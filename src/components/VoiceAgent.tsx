@@ -1,4 +1,4 @@
-import { useConversation } from "@elevenlabs/react";
+import { ConversationProvider, useConversation } from "@elevenlabs/react";
 import { Mic, PhoneOff, Loader2 } from "lucide-react";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
@@ -8,6 +8,14 @@ import { Button } from "@/components/ui/button";
 const AGENT_ID = "agent_7101kyyj9stjefjan2e9m0tzvsh6";
 
 export function VoiceAgent() {
+  return (
+    <ConversationProvider>
+      <AriaPanel />
+    </ConversationProvider>
+  );
+}
+
+function AriaPanel() {
   const [isConnecting, setIsConnecting] = useState(false);
 
   const conversation = useConversation({
